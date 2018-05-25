@@ -38,14 +38,18 @@ public final class CreateRep implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        //Solicitamos el nombre del repositorio a crear
         String repoNombre = JOptionPane.showInputDialog("Introduce nombre del repositorio");
         try {
+            //Generamos el constructor
             GHCreateRepositoryBuilder repo;
             repo = github.createRepository(repoNombre);
+            //Creamos el repositorio remoto con el nombre indicado
             repo.autoInit(true).create();
         } catch (IOException ex) {
             Exceptions.printStackTrace(ex);
         }
+        //informamos al usuario de que todo ha ido bien
         System.out.println("Listo");
     }
 }
